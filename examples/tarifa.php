@@ -18,7 +18,7 @@ $xml = '<?xml version="1.0" encoding="UTF-8"?>
 <ns1:DropoffType>REGULAR_PICKUP</ns1:DropoffType>
 <ns1:ServiceType>'.$ServiceType.'</ns1:ServiceType>
 <ns1:PackagingType>'.$PackagingType.'</ns1:PackagingType>
-<ns1:TotalInsuredValue><ns1:Currency>USD</ns1:Currency></ns1:TotalInsuredValue>
+<ns1:PreferredCurrency>'.$currency.'</ns1:PreferredCurrency>
 <ns1:Shipper><ns1:Contact><ns1:PersonName>Sender Name</ns1:PersonName><ns1:CompanyName>Sender Company Name</ns1:CompanyName><ns1:PhoneNumber></ns1:PhoneNumber></ns1:Contact><ns1:Address><ns1:StreetLines></ns1:StreetLines><ns1:City></ns1:City><ns1:StateOrProvinceCode></ns1:StateOrProvinceCode>
 <ns1:PostalCode>'.$origenPostalCode.'</ns1:PostalCode><ns1:CountryCode>'.$origenPais.'</ns1:CountryCode></ns1:Address></ns1:Shipper>
 <ns1:Recipient><ns1:Contact><ns1:PersonName>Recipient Name</ns1:PersonName><ns1:CompanyName>Company Name</ns1:CompanyName><ns1:PhoneNumber></ns1:PhoneNumber></ns1:Contact><ns1:Address><ns1:StreetLines></ns1:StreetLines><ns1:City></ns1:City><ns1:StateOrProvinceCode></ns1:StateOrProvinceCode>
@@ -56,11 +56,15 @@ $result_xml = str_replace(array(':','-'), '', $result_xml);
 $result = @simplexml_load_string($result_xml);
 curl_close($ch);
 
-
+// Moneda local
 print $result->SOAPENVBody->RateReply->RateReplyDetails->RatedShipmentDetails[0]->ShipmentRateDetail->TotalNetCharge->Amount;
 
+// Dolares
+//print $result->SOAPENVBody->RateReply->RateReplyDetails->RatedShipmentDetails[1]->ShipmentRateDetail->TotalNetCharge->Amount;
+
 // imprime todo el restulado de la consulta
-//print_r($result);
+// print '<pre>';
+// print_r($result);
 
 
 ?>
