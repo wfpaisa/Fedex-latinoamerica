@@ -2,7 +2,7 @@
 // Retorna la tarifa para un valor determinado
 
 require_once('../config.php');
-
+//<ns1:PreferredCurrency>'.$currency.'</ns1:PreferredCurrency>
 $xml = '<?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fedex.com/ws/rate/v14"><SOAP-ENV:Body><ns1:RateRequest>
 <ns1:WebAuthenticationDetail>
@@ -18,7 +18,6 @@ $xml = '<?xml version="1.0" encoding="UTF-8"?>
 <ns1:DropoffType>REGULAR_PICKUP</ns1:DropoffType>
 <ns1:ServiceType>'.$ServiceType.'</ns1:ServiceType>
 <ns1:PackagingType>'.$PackagingType.'</ns1:PackagingType>
-<ns1:PreferredCurrency>'.$currency.'</ns1:PreferredCurrency>
 <ns1:Shipper><ns1:Contact><ns1:PersonName>Sender Name</ns1:PersonName><ns1:CompanyName>Sender Company Name</ns1:CompanyName><ns1:PhoneNumber></ns1:PhoneNumber></ns1:Contact><ns1:Address><ns1:StreetLines></ns1:StreetLines><ns1:City></ns1:City><ns1:StateOrProvinceCode></ns1:StateOrProvinceCode>
 <ns1:PostalCode>'.$origenPostalCode.'</ns1:PostalCode><ns1:CountryCode>'.$origenPais.'</ns1:CountryCode></ns1:Address></ns1:Shipper>
 <ns1:Recipient><ns1:Contact><ns1:PersonName>Recipient Name</ns1:PersonName><ns1:CompanyName>Company Name</ns1:CompanyName><ns1:PhoneNumber></ns1:PhoneNumber></ns1:Contact><ns1:Address><ns1:StreetLines></ns1:StreetLines><ns1:City></ns1:City><ns1:StateOrProvinceCode></ns1:StateOrProvinceCode>
@@ -59,12 +58,12 @@ curl_close($ch);
 // Moneda local
 print $result->SOAPENVBody->RateReply->RateReplyDetails->RatedShipmentDetails[0]->ShipmentRateDetail->TotalNetCharge->Amount;
 
-// Dolares
+// Retorna las tarifas en dolares
 //print $result->SOAPENVBody->RateReply->RateReplyDetails->RatedShipmentDetails[1]->ShipmentRateDetail->TotalNetCharge->Amount;
 
 // imprime todo el restulado de la consulta
-// print '<pre>';
-// print_r($result);
+print '<pre>';
+print_r($result);
 
 
 ?>

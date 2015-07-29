@@ -34,7 +34,4 @@ $Length ='1'; // largo
 $Width = '1'; // ancho
 $Height = '1'; // Alto
 
-// En el >RatedShipmentDetails[0] Devuelve la tarifa en la moneda local, con la que se configura la cuenta,
-// En el >RatedShipmentDetails[1] Devuelve la tarifas en esta moneda es opcional
-$currency = 'USD'
 ?>
